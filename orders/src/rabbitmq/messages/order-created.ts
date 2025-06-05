@@ -1,0 +1,8 @@
+import type { OrderCreatedMessage } from '../../../../contracts/messages/order-created.ts';
+import { channels } from "../channels/channel.ts";
+
+export function dispatchOrderCreated(data: OrderCreatedMessage) {
+  channels.orders.sendToQueue('orders', Buffer.from(
+    JSON.stringify(data)
+  ))
+}
